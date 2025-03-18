@@ -1,5 +1,7 @@
 package example
 
+import scala.compiletime.ops.int
+
 object Lists:
 
   /**
@@ -50,3 +52,8 @@ object Lists:
       case (Some(maxVal), elem) => Some(maxVal max elem)
     }
 
+    /*if (xs.isEmpty) None
+    else xs.foldLeft(Option.empty[Int]) {
+      case (none, elem) => Some(elem)
+      case (Some(maxVal), elem) => Some(maxVal max elem)
+    }*/
