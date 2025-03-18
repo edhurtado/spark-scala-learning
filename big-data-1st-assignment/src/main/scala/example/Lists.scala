@@ -22,7 +22,8 @@ object Lists:
    * @param xs A list of natural numbers
    * @return The sum of all elements in `xs`
    */
-  def sum(xs: List[Int]): Int = ???
+  def sum(xs: List[Int]): Int =
+    xs.foldLeft(0)( (prev, next) => prev + next ) // Logica creada por mi
 
   /**
    * This method returns the largest element in a list of integers. If the
@@ -37,4 +38,15 @@ object Lists:
    * @return The largest element in `xs`
    * @throws java.util.NoSuchElementException if `xs` is an empty list
    */
-  def max(xs: List[Int]): Int = ???
+  def max(xs: List[Int]): Option[Int] = 
+    /* Implementación pensada por mi: 
+    def maxTwo(a: Int, b: Int): Int = if a > b then a else b
+    // xs.foldLeft(0)( (max, elem) => maxTwo(elem, max) ) // Codigo pensado por mi
+    xs.foldLeft(Int.MinValue)( (max, elem) => maxTwo(max, elem) ) // Sugerido por ChatGPT
+    */
+
+    xs.foldLeft(Option.empty[Int]) { //Proporcionado por ChatGPT, basado en un Scala Sr.
+      case (None, elem) => Some(elem)
+      case (Some(maxVal), elem) => Some(maxVal max elem)
+    }
+
