@@ -53,7 +53,7 @@ object WikipediaRanking extends WikipediaRankingInterface:
    * to the Wikipedia pages in which it occurs.
    */
   def makeIndex(langs: List[String], rdd: RDD[WikipediaArticle]): RDD[(String, Iterable[WikipediaArticle])] = {
-      rdd.flatMap(article => langs.filter(lang => article.mentionsLanguage(lang)).map(lang => (lang, article)) ).groupByKey()
+      rdd.flatMap(article => langs.filter(lang => article.mentionsLanguage(lang)).map(lang => (lang, article))).groupByKey()
   }
 
   /* (2) Compute the language ranking again, but now using the inverted index. Can you notice
